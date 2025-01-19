@@ -188,6 +188,14 @@ main {
   margin: 0 auto;
 }
 
+.product-slider {
+  cursor: grab;
+}
+
+.product-slider.grabbing {
+  cursor: grabbing;
+}
+
 .product-list {
   display: flex;
   justify-content: center;
@@ -579,5 +587,10 @@ footer ul {
   .cart-item div {
     flex: unset;
     margin: 5px 0;
+  }
+
+  .campaign-container {
+    width: 100%;
+    margin-left: 0;
   }
 }

@@ -146,7 +146,8 @@ session_start();
     <footer>
         <p>&copy; 2025 E-Ticaret Sitesi. Tüm hakları saklıdır.</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         $(document).ready(function() {
             $(".add-to-cart").click(function() {
@@ -161,15 +162,18 @@ session_start();
                 });
             });
         });
-    </script>
+        </script>
     <script>
         $(document).ready(function(){
-            $('.product-slider').slick({
+            var slider = $('.product-slider');
+            
+            slider.slick({
                 infinite: false,
                 slidesToShow: 4,
                 slidesToScroll: 4,
                 autoplay: false,
                 dots: true,
+                arrows: false, 
                 responsive: [
                     {
                         breakpoint: 1024,
@@ -181,8 +185,9 @@ session_start();
                     {
                         breakpoint: 768,
                         settings: {
-                            slidesToShow: 2,
+                            slidesToShow: 1,
                             slidesToScroll: 1,
+                            dots: false,
                         }
                     },
                     {
@@ -190,13 +195,24 @@ session_start();
                         settings: {
                             slidesToShow: 1,
                             slidesToScroll: 1,
+                            dots: false,
                         }
                     }
                 ]
             });
+
+            slider.on('mousedown', function() {
+                $(this).addClass('grabbing');  
+            }).on('mouseup', function() {
+                $(this).removeClass('grabbing');  
+            });
+
+            slider.on('dragstart', function() {
+                $(this).addClass('grabbing');
+            }).on('dragend', function() {
+                $(this).removeClass('grabbing');
+            });
         });
-    </script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        </script>
 </body>
 </html>
