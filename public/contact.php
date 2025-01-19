@@ -38,8 +38,14 @@ session_start();
             <button type="submit" class="btn btn-warning">Gönder</button>
         </form>
     </main>
-    <footer>
-        <p>&copy; 2025 E-Ticaret Sitesi. Tüm hakları saklıdır.</p>
+    <footer style="background-color: #f8f8f8; padding: 20px; color: #333;">
+        <h3>İletişim</h3>
+        <p>Bizimle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz:</p>
+        <ul>
+            <li><strong>Email:</strong> info@okulshop.com</li>
+            <li><strong>Telefon:</strong> +90 555 123 45 67</li>
+            <li><strong>Adres:</strong> Lefkoşa, Kıbrıs</li>
+        </ul>
     </footer>
 </body>
 </html>

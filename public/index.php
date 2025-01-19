@@ -37,13 +37,54 @@ session_start();
         </nav>
     </header>
     <main>
-        <section id="products">
-            <h2>Ürünler</h2>
+        <section class="products">
+            <h2>Kırtasiye Eşyaları</h2>
             <div class="product-slider">
                 <?php
                 $sql = "SELECT p.ProductID, p.ProductName, p.Description, p.Price, pi.Image 
                         FROM Products p 
-                        LEFT JOIN ProductImages pi ON p.ProductID = pi.ProductID AND pi.IsMainImage = TRUE";
+                        LEFT JOIN ProductImages pi ON p.ProductID = pi.ProductID AND pi.IsMainImage = TRUE
+                        WHERE p.CategoryID = 8
+                        ORDER BY p.ProductID DESC";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<div class="product-item" data-id="' . $row["ProductID"] . '">';
+                        echo '<a href="product_details.php?productID=' . $row["ProductID"] . '" class="product-link">';
+                        echo '<div class="product-image">';
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($row["Image"]) . '" alt="' . $row["ProductName"] . '">';
+                        echo '</div>';
+                        echo '<div class="product-content">';
+                        echo '<h3>' . $row["ProductName"] . '</h3>';
+                        echo '<p>Fiyat: ' . $row["Price"] . ' ₺</p>';
+                        echo '</div>';
+                        echo '</a>';
+                        echo '<button class="add-to-cart" data-id="' . $row["ProductID"] . '">Sepete Ekle</button>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "Ürün bulunamadı.";
+                }
+                ?>
+        </section>
+        <!-- kampanya resmi -->
+        <section class="campaign">
+            <div class="container">
+            <div class="campaign-container">
+                <img src="img/7c912d6a-0e2b-4a9b-b826-3343eef19933.png" alt="Kampanya">
+            </div>
+            </div>
+        </section>
+        <section class="products">
+            <h2>Yeni Eklenenler</h2>
+            <div class="product-slider">
+                <?php
+                include 'db.php';
+                $sql = "SELECT p.ProductID, p.ProductName, p.Description, p.Price, pi.Image 
+                        FROM Products p 
+                        LEFT JOIN ProductImages pi ON p.ProductID = pi.ProductID AND pi.IsMainImage = TRUE
+                        ORDER BY p.ProductID DESC";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -66,7 +107,40 @@ session_start();
                 }
                 $conn->close();
                 ?>
-            </div>
+            </div> 
+        </section>
+        <section class="products">
+            <h2>Giyim</h2>
+            <div class="product-slider">
+                <?php
+                include 'db.php';
+                $sql = "SELECT p.ProductID, p.ProductName, p.Description, p.Price, pi.Image 
+                        FROM Products p 
+                        LEFT JOIN ProductImages pi ON p.ProductID = pi.ProductID AND pi.IsMainImage = TRUE
+                        WHERE p.CategoryID = 2
+                        ORDER BY p.ProductID DESC";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<div class="product-item" data-id="' . $row["ProductID"] . '">';
+                        echo '<a href="product_details.php?productID=' . $row["ProductID"] . '" class="product-link">';
+                        echo '<div class="product-image">';
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($row["Image"]) . '" alt="' . $row["ProductName"] . '">';
+                        echo '</div>';
+                        echo '<div class="product-content">';
+                        echo '<h3>' . $row["ProductName"] . '</h3>';
+                        echo '<p>Fiyat: ' . $row["Price"] . ' ₺</p>';
+                        echo '</div>';
+                        echo '</a>';
+                        echo '<button class="add-to-cart" data-id="' . $row["ProductID"] . '">Sepete Ekle</button>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "Ürün bulunamadı.";
+                }
+                $conn->close();
+                ?>
         </section>
     </main>
     <footer>
@@ -89,39 +163,40 @@ session_start();
         });
     </script>
     <script>
-    $(document).ready(function(){
-        $('.product-slider').slick({
-            infinite: false,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            autoplay: false, 
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
+        $(document).ready(function(){
+            $('.product-slider').slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                autoplay: false,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
                     }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
-                }
-            ]
+                ]
+            });
         });
-    });
-</script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>
 </html>

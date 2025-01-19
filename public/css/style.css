@@ -183,7 +183,7 @@ main {
   padding: 20px;
 }
 
-#products {
+.products {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -513,7 +513,34 @@ footer ul {
   color: white !important;
 }
 
-/* Responsive Tasarım */
+/* Kampanya Resmi */
+.campaign {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #f4f4f4;
+}
+
+.campaign .container {
+  width: 1200px !important;
+}
+
+.campaign-container {
+  float: left;
+  width: 400px;
+  padding: 0 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.campaign-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
 
 @media (max-width: 992px) {
   .container {
@@ -538,8 +565,8 @@ footer ul {
     display: block;
     margin: 10px 0;
   }
-  .product-content button {
-    visibility: visible !important;
+  .product-item button {
+    display: block !important;
   }
 }
 

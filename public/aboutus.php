@@ -40,7 +40,7 @@ session_start();
         <ul>
             <li><strong>Email:</strong> info@okulshop.com</li>
             <li><strong>Telefon:</strong> +90 555 123 45 67</li>
-            <li><strong>Adres:</strong> İstanbul, Türkiye</li>
+            <li><strong>Adres:</strong> Lefkoşa, Kıbrıs</li>
         </ul>
     </footer>
 </body>
