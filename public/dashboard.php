@@ -46,7 +46,9 @@ if ($userRole !== 'Admin') {
             <li><a href="admin_users.php" class="btn btn-warning">Kullanıcı Yönetimi</a></li>
             <li><a href="admin_products.php" class="btn btn-warning">Ürün Yönetimi</a></li>
             <li><a href="admin_categories.php" class="btn btn-warning">Kategori Yönetimi</a></li>
-            <li><a href="admin_productimages.php" class="btn btn-warning">Ürün Resimleri Yönetimi</a></li>
+            <li><a href="admin_addresses.php" class="btn btn-warning">Adres Yönetimi</a></li>
+            <li><a href="admin_orderdetails.php" class="btn btn-warning">Sipariş Detayları Yönetimi</a></li>
+            <li><a href="admin_orders.php" class="btn btn-warning">Sipariş Yönetimi</a></li>
         </ul>
     </main>
 </body>
