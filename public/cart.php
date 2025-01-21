@@ -56,6 +56,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <nav>
             <ul>
                 <li><a href="index.php">Ana Sayfa</a></li>
+                <li><a href="products.php">Ürünler</a></li>
                 <li><a href="aboutus.php">Hakkımızda</a></li>
                 <li><a href="contact.php">İletişim</a></li>
                 <?php if (isset($_SESSION['UserName'])): ?>

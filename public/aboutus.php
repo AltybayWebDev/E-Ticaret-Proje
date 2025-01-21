@@ -15,6 +15,7 @@ session_start();
         <nav>
             <ul>
                 <li><a href="index.php">Ana Sayfa</a></li>
+                <li><a href="products.php">Ürünler</a></li>
                 <li><a href="aboutus.php" class="active">Hakkımızda</a></li>
                 <li><a href="contact.php">İletişim</a></li>
                 <?php if (isset($_SESSION['UserName'])): ?>

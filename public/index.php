@@ -36,10 +36,12 @@ if ($userID) {
             <div>
                 <a href="index.php"><h3>OkulShop</h3></a>
             </div>
-            <div>
-                <input type="text" placeholder="Ürün Ara"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+                <form action="products.php" method="get" style="all: unset;display: flex; gap: 10px; align-items: center; margin: 0;">
+                    <input type="text" name="search" placeholder="Ürün Ara" style="margin: 0;">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
             <ul>
+                <li><a href="products.php">Ürünler</a></li>
                 <li><a href="aboutus.php">Hakkımızda</a></li>
                 <li><a href="contact.php">İletişim</a></li>
                 <?php if ($userName): ?>
