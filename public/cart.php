@@ -50,23 +50,6 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sepetim</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".update-cart").click(function() {
-                var productID = $(this).data("id");
-                var action = $(this).data("action");
-                $.ajax({
-                    url: "cart.php",
-                    type: "POST",
-                    data: { productID: productID, action: action },
-                    success: function(response) {
-                        location.reload();
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -77,37 +60,63 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 <li><a href="contact.php">İletişim</a></li>
                 <?php if (isset($_SESSION['UserName'])): ?>
                     <li><a href="#"><?php echo $_SESSION['UserName']; ?></a></li>
-                    <li><a href="cart.php" class="active">Sepetim</a></li>
                 <?php else: ?>
                     <li><a href="login.php">Giriş Yap</a></li>
                 <?php endif; ?>
+                <li><a href="cart.php" class="active">Sepetim</a></li>
             </ul>
         </nav>
     </header>
     <main>
-    <h2>Sepetim</h2>
-    <?php if (!empty($cartItems)): ?>
-        <div class="cart-container">
-            <?php foreach ($cartItems as $item): ?>
-                <div class="cart-item">
-                    <div class="product-image">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($item['Image']); ?>" alt="<?php echo $item['ProductName']; ?>">
+        <h2>Sepetim</h2>
+        <?php if (!empty($cartItems)): ?>
+            <div class="cart-container">
+                <?php foreach ($cartItems as $item): ?>
+                    <div class="cart-item">
+                        <div class="product-image">
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($item['Image']); ?>" alt="<?php echo $item['ProductName']; ?>">
+                        </div>
+                        <div class="product-name"><?php echo $item['ProductName']; ?></div>
+                        <div class="product-price"><?php echo $item['Price']; ?> TL</div>
+                        <div class="product-quantity">
+                            <button class="update-cart" data-id="<?php echo $item['ProductID']; ?>" data-action="decrease">-</button>
+                            <span><?php echo $item['Quantity']; ?></span>
+                            <button class="update-cart" data-id="<?php echo $item['ProductID']; ?>" data-action="increase">+</button>
+                        </div>
+                        <div class="product-total"><?php echo $item['Price'] * $item['Quantity']; ?> TL</div>
                     </div>
-                    <div class="product-name"><?php echo $item['ProductName']; ?></div>
-                    <div class="product-price"><?php echo $item['Price']; ?> TL</div>
-                    <div class="product-quantity">
-                        <button class="update-cart" data-id="<?php echo $item['ProductID']; ?>" data-action="decrease">-</button>
-                        <span><?php echo $item['Quantity']; ?></span>
-                        <button class="update-cart" data-id="<?php echo $item['ProductID']; ?>" data-action="increase">+</button>
-                    </div>
-                    <div class="product-total"><?php echo $item['Price'] * $item['Quantity']; ?> TL</div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <h3>Toplam Fiyat: <?php echo $totalPrice; ?> TL</h3>
-    <?php else: ?>
-        <p>Sepetiniz boş.</p>
-    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p>Sepetiniz boş.</p>
+        <?php endif; ?>
     </main>
+    <?php if (!empty($cartItems)): ?>
+        <div class="fixed-footer">
+            <div>Toplam: <?php echo $totalPrice; ?> TL</div>
+            <button id="checkout-btn" class="btn btn-warning">Satın Al</button>
+        </div>
+    <?php endif; ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".update-cart").click(function() {
+                var productID = $(this).data("id");
+                var action = $(this).data("action");
+                $.ajax({
+                    url: "cart.php",
+                    type: "POST",
+                    data: { productID: productID, action: action },
+                    success: function() {
+                        location.reload();
+                    }
+                });
+            });
+
+            $("#checkout-btn").click(function() {
+                window.location.href = "checkout.php";
+            });
+        });
+    </script>
 </body>
 </html>

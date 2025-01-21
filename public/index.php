@@ -1,6 +1,22 @@
 <?php
-include 'db.php';
 session_start();
+include 'db.php';
+
+$userID = $_SESSION['UserID'] ?? null;
+$userName = $_SESSION['UserName'] ?? null;
+$userRole = null;
+
+if ($userID) {
+    $sql = "SELECT Role FROM Users WHERE UserID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $userRole = $row['Role'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +30,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
-    <header>
+<header>
         <nav>
             <div class="container">
             <div>
@@ -26,12 +42,12 @@ session_start();
             <ul>
                 <li><a href="aboutus.php">Hakkımızda</a></li>
                 <li><a href="contact.php">İletişim</a></li>
-                <?php if (isset($_SESSION['UserName'])): ?>
-                    <li><a href="#"><?php echo $_SESSION['UserName']; ?></a></li>
-                    <li><a href="cart.php">Sepetim</a></li>
+                <?php if ($userName): ?>
+                    <li><a href="<?php echo ($userRole == 'Admin') ? 'dashboard.php' : '#'; ?>"><?php echo $userName; ?></a></li>
                 <?php else: ?>
                     <li><a href="login.php">Giriş Yap</a></li>
                 <?php endif; ?>
+                <li><a href="cart.php">Sepetim</a></li>
             </ul>
             </div>
         </nav>
@@ -67,14 +83,6 @@ session_start();
                     echo "Ürün bulunamadı.";
                 }
                 ?>
-        </section>
-        <!-- kampanya resmi -->
-        <section class="campaign">
-            <div class="container">
-            <div class="campaign-container">
-                <img src="img/7c912d6a-0e2b-4a9b-b826-3343eef19933.png" alt="Kampanya">
-            </div>
-            </div>
         </section>
         <section class="products">
             <h2>Yeni Eklenenler</h2>

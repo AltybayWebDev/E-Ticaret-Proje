@@ -19,10 +19,10 @@ session_start();
                 <li><a href="contact.php" class="active">İletişim</a></li>
                 <?php if (isset($_SESSION['UserName'])): ?>
                     <li><a href="#"><?php echo $_SESSION['UserName']; ?></a></li>
-                    <li><a href="cart.php">Sepetim</a></li>
                 <?php else: ?>
                     <li><a href="login.php">Giriş Yap</a></li>
                 <?php endif; ?>
+                <li><a href="cart.php">Sepetim</a></li>
             </ul>
         </nav>
     </header>

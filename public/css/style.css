@@ -550,6 +550,88 @@ footer ul {
   border-radius: 10px;
 }
 
+/* Satın Alma Butonu ve Toplam Fiyat */
+.checkout-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.total-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.checkout-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.checkout-button:hover {
+  background-color: #218838;
+}
+
+/* Ödeme Sayfası */
+.checkout-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-form input[type="text"],
+.checkout-form textarea,
+.checkout-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 992px) {
   .container {
     flex-direction: column;
@@ -593,4 +675,66 @@ footer ul {
     width: 100%;
     margin-left: 0;
   }
+
+  .fixed-footer {
+    width: 100%;
+  }
+}
+
+/* Tablo Stilleri */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+  background-color: #ffc107; /* Tablo başlık için sarı */
+  color: #856404; /* Sarı ile uyumlu yazı rengi */
+}
+
+table thead th {
+  padding: 10px;
+  text-align: left;
+}
+
+table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ffeeba; /* Sarı bir çizgi */
+}
+
+table tbody tr:hover {
+  background-color: #fff8e1; /* Hover için daha açık sarı */
+}
+
+/* İşlemler İçin Bağlantılar */
+table tbody td a {
+  text-decoration: none;
+  color: #856404; /* Sarı temaya uygun yazı rengi */
+  font-weight: bold;
+  margin-right: 10px;
+  transition: color 0.3s;
+}
+
+table tbody td a:hover {
+  color: #e0a800; /* Hover için koyu sarı */
+}
+
+ul li {
+  list-style: none;
+}
+
+#admin-panel {
+  text-align: center;
+}
+
+#admin-panel a {
+  width: 300px;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
