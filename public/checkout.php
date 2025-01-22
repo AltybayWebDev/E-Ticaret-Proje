@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Sepeti sıfırla
             unset($_SESSION['cart']);
             $successMessage = "Sipariş başarıyla tamamlandı!";
-            window.location.href = "index.php";
+            header("Location: index.php");
         } else {
             $errorMessage = "Sipariş oluşturulurken bir hata oluştu!";
         }
